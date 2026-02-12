@@ -2,7 +2,21 @@
   "name": "zac-claude-plugins",
   "version": "0.1.0",
   "description": "Zac's personal Claude Code plugin marketplace",
+  "owner": {
+    "name": "Zac Burrage",
+    "email": "zac.burrage@gmail.com"
+  },
   "plugins": [
-    "plugins/customer-voice"
+    {
+      "name": "customer-voice",
+      "source": "./plugins/customer-voice",
+      "description": "Draft customer responses in Zac's voice with codebase, docs, Slack, and Gmail research",
+      "version": "0.1.0",
+      "author": {
+        "name": "Zac Burrage",
+        "email": "zac.burrage@gmail.com"
+      },
+      "keywords": ["customer", "voice", "response", "slack", "gmail"]
+    }
   ]
 }
