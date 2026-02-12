@@ -1,0 +1,8 @@
+{
+  "name": "zac-claude-plugins",
+  "version": "0.1.0",
+  "description": "Zac's personal Claude Code plugin marketplace",
+  "plugins": [
+    "plugins/customer-voice"
+  ]
+}
