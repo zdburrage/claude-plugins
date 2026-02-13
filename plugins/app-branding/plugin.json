@@ -1,0 +1,6 @@
+{
+  "name": "app-branding",
+  "version": "0.1.0",
+  "description": "Scaffold a standalone branding system into any React app — interactive config script, theme resolution, and env-based customization",
+  "commands": ["./commands/"]
+}

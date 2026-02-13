@@ -17,6 +17,17 @@
         "email": "zac.burrage@gmail.com"
       },
       "keywords": ["customer", "voice", "response", "slack", "gmail"]
+    },
+    {
+      "name": "app-branding",
+      "source": "./plugins/app-branding",
+      "description": "Scaffold a standalone branding system into any React app — interactive config script, theme resolution, and env-based customization",
+      "version": "0.1.0",
+      "author": {
+        "name": "Zac Burrage",
+        "email": "zac.burrage@gmail.com"
+      },
+      "keywords": ["branding", "demo", "theming", "config", "radix"]
     }
   ]
 }
