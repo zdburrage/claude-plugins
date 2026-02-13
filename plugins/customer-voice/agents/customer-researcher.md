@@ -98,7 +98,10 @@ If the customer question references an email thread or the response will be via 
 - Prior email threads with this customer
 - Related email discussions that provide context
 
-Launch Tracks 1, 2, and 5 in parallel in the same message. Add Tracks 3, 4, and 6 to the same parallel launch if they're relevant.
+**Additional Tracks (from local config)**
+Check `${CLAUDE_PLUGIN_ROOT}/config.local.md` for additional research tracks defined under a `## Additional Research Tracks` heading. If present, include those tracks in the parallel launch alongside the tracks above when their relevance criteria are met. Also check for additional source priority rules and output format sections.
+
+Launch Tracks 1, 2, and 5 in parallel in the same message. Add Tracks 3, 4, 6, and any additional local tracks to the same parallel launch if they're relevant.
 
 ### Source Priority (for factual accuracy)
 
