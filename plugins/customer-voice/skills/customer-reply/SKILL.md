@@ -8,11 +8,10 @@ description: This skill should be used when the user asks to "reply to a custome
 Research and draft a response to a customer or teammate in Zac's voice.
 
 ```
-INTAKE -> TRIAGE -> RESEARCH -> DRAFT (in voice) -> REVIEW -> DELIVER
-  |         |         |              |               |         |
- Read    Identify   Spawn       Apply voice      Present   Copy to
- thread  questions  researcher  from first       to Zac    clipboard
-                    agent       keystroke
+INTAKE -> RESEARCH -> DRAFT + VALIDATE -> DELIVER (clipboard) -> ITERATE
+  |          |              |                    |                   |
+ Read     Spawn         Apply voice,         pbcopy first,      Re-draft
+ thread   researcher    then self-check      show inline         on feedback
 ```
 
 ## Critical: Voice Is a Pre-Draft Constraint
@@ -37,7 +36,7 @@ These rules are non-negotiable. They apply to every draft:
 
 **NEVER do these**:
 
-- Em-dashes. Use commas, parentheses, or new sentences.
+- Em-dashes (—, –). Use commas, parentheses, or new sentences instead.
 - "I hope this email finds you well" or similar corporate filler
 - "I believe" / "I think" when stating known facts
 - Over-explaining things the customer clearly already understands
@@ -82,7 +81,7 @@ The agent handles parallel research across codebase, docs, SDKs, Slack history, 
 
 **Wait for the research agent to return before drafting.** Do not draft speculatively.
 
-### Phase 3: Draft
+### Phase 3: Draft + Validate
 
 **Before writing a single word, re-read the Voice Quick Reference above.**
 
@@ -103,19 +102,29 @@ Using the research findings, draft the response. Apply these rules during drafti
    - No em-dashes anywhere
    - No corporate filler or closers (unless email, where "Thanks!" is fine)
 
-### Phase 4: Review
+#### Post-Draft Validation (mandatory before delivery)
 
-Present the draft to Zac. Do not explain or justify the draft; just show it.
+After drafting, scan the draft for these violations before proceeding to delivery. If any are found, fix them silently and re-validate. Do NOT deliver a draft that fails validation.
 
-If Zac requests changes, apply them and re-present. Iterate until approved.
+- [ ] **No em-dashes**: Search for `—` (U+2014) and `–` (U+2013). Replace with commas, parentheses, or split into separate sentences.
+- [ ] **No corporate filler**: No "I believe", "I think" (for known facts), "please don't hesitate", "as per", "I'd like to take this opportunity".
+- [ ] **No markdown in Slack mode**: No `**bold**` (use `*bold*`), no `# headers`, no `[text](url)` link syntax (Slack auto-links URLs).
+- [ ] **No unverified URLs**: Every URL in the draft must come from the research agent's findings.
+- [ ] **Code formatting**: All technical terms, endpoints, field names, attribute names are wrapped in backticks.
 
-### Phase 5: Deliver
+### Phase 4: Deliver + Review
 
-After approval, copy the response to the clipboard using:
+**Always copy to clipboard first, then show inline.** Zac uses Warp terminal which mangles formatting on copy. The clipboard is the source of truth.
 
-```bash
-echo '<response>' | pbcopy
-```
+1. Copy the validated draft to clipboard:
+   ```bash
+   printf '%s' '<response_text>' | pbcopy
+   ```
+   Use `printf '%s'` (not `echo`). Escape single quotes in the response by ending the quote, adding `'"'"'`, and reopening (standard shell escaping).
+
+2. Show the full draft inline so Zac can review it in the terminal. Prefix with "Copied to clipboard." so he knows it's ready to paste.
+
+3. If Zac requests changes, apply them, re-validate, re-copy to clipboard, and show the updated draft inline.
 
 ## Important
 
@@ -125,3 +134,4 @@ echo '<response>' | pbcopy
 - Do NOT ask plain-text questions. Use `AskUserQuestion` for all decision points.
 - Default to Slack mrkdwn unless Zac asks for email format or GitHub Flavored Markdown.
 - Keep responses as short as they can be while still being complete.
+- ALWAYS deliver via `printf '%s' '...' | pbcopy`. Never rely on terminal copy-paste.
