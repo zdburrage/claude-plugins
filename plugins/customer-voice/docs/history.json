@@ -1,0 +1,36 @@
+{
+  "skill_name": "customer-reply",
+  "entries": [
+    {
+      "timestamp": "2026-04-30T00:00:00Z",
+      "version": "0.1.0",
+      "trigger": "Zac flagged speed and token usage on recent runs",
+      "scores_before": {
+        "description": 22,
+        "structure": 18,
+        "instructions": 14,
+        "agents_tools": 10,
+        "total": 64
+      },
+      "scores_after": {
+        "description": 22,
+        "structure": 19,
+        "instructions": 21,
+        "agents_tools": 20,
+        "total": 82
+      },
+      "applied": [
+        "SKILL.md Phase 2 rewritten as Triage & Research with skip conditions",
+        "customer-researcher.md Track 1 ALWAYS to WHEN RELEVANT",
+        "customer-researcher.md Track 5 ALWAYS to WHEN RELEVANT",
+        "customer-researcher.md launch block replaced with Track Selection triage paragraph"
+      ],
+      "skipped": [
+        "Cut inline voice duplication from SKILL.md",
+        "Collapse to single voice source"
+      ],
+      "description_changed": false,
+      "trigger_tests": null
+    }
+  ]
+}
